@@ -4,7 +4,7 @@ package session;
 
 import "google/protobuf/empty.proto";
 
-option go_package = "github.com/AlexandrKobalt/sessio/api/proto/session";
+option go_package = "github.com/AlexandrKobalt/sessio/proto/session";
 
 // protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative sessio.proto
 

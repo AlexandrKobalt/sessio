@@ -3,8 +3,8 @@ package grpc
 import (
 	"context"
 
-	session "github.com/AlexandrKobalt/sessio/api/proto"
 	"github.com/AlexandrKobalt/sessio/internal"
+	session "github.com/AlexandrKobalt/sessio/proto"
 	"google.golang.org/protobuf/types/known/emptypb"
 )
 
