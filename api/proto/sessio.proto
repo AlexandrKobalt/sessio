@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package session;
+
+import "google/protobuf/empty.proto";
+
+option go_package = "github.com/AlexandrKobalt/sessio/api/proto/session";
+
+// protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative sessio.proto
+
+service Sessio {
+    rpc CreateSession(CreateSessionRequest) returns (CreateSessionResponse);
+    rpc Authenticate(AuthenticateRequest) returns (AuthenticateResponse);
+    rpc GetAllActiveSessions(GetAllActiveSessionsRequest) returns (GetAllActiveSessionsResponse);
+    rpc DeleteSession(DeleteSessionRequest) returns (google.protobuf.Empty);
+}
+
+message Session {
+    string user_id = 1;
+    string auth_key = 2;
+    string user_agent = 3;
+    int64 created_at = 4;
+    int64 expires_at = 5;
+}
+
+message CreateSessionRequest {
+    string user_id = 1;
+    string user_agent = 2;
+}
+
+message CreateSessionResponse {
+    string auth_key = 1;
+}
+
+message AuthenticateRequest {
+    string auth_key = 1;
+    string user_agent = 2;
+}
+
+message AuthenticateResponse {
+    string user_id = 1;
+}
+
+message GetAllActiveSessionsRequest {
+    string user_id = 1;
+}
+
+message GetAllActiveSessionsResponse {
+    repeated Session sessions = 1;
+    int32 total = 2;
+}
+
+message DeleteSessionRequest {
+    string user_id = 1;
+    string user_agent = 2;
+}
